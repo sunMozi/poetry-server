@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.poetry</groupId>
+  <artifactId>poetry</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>poetry-common</module>
+    <module>poetry-api</module>
+    <module>poetry-model</module>
+    <module>poetry-server</module>
+  </modules>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--    -->
+    <maven.test.skip>true</maven.test.skip>
+    <!--    -->
+    <spring-boot.version>3.4.5</spring-boot.version>
+    <knife4j.version>4.5.0</knife4j.version>
+    <mybatis-plus-spring-boot3-starter>3.5.12</mybatis-plus-spring-boot3-starter>
+    <pagehelper-spring-boot-starter.version>2.1.0</pagehelper-spring-boot-starter.version>
+    <mysql-driver.version>8.3.0</mysql-driver.version>
+    <fastjson2.version>2.0.50</fastjson2.version>
+    <druid-spring-boot-3-starter.version>1.2.25</druid-spring-boot-3-starter.version>
+    <jjwt.version>0.12.5</jjwt.version>
+    <easyexcel.version>4.0.3</easyexcel.version>
+    <xxl-job-core.version>2.4.2</xxl-job-core.version>
+    <guava.version>33.2.0-jre</guava.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+    <hutool.all.version>5.8.29</hutool.all.version>
+    <!--    -->
+    <poetry.version>1.0-SNAPSHOT</poetry.version>
+
+    <!--    -->
+  </properties>
+  <dependencyManagement>
+
+    <dependencies>
+
+      <!--Spring Boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--knife4j-->
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-dependencies</artifactId>
+        <version>${knife4j.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--MyBatis-->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        <version>${mybatis-plus-spring-boot3-starter}</version>
+      </dependency>
+      <!--PageHelper-->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper-spring-boot-starter.version}</version>
+      </dependency>
+      <!--MySQL-->
+      <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>${mysql-driver.version}</version>
+      </dependency>
+      <!--FastJson2-->
+      <dependency>
+        <groupId>com.alibaba.fastjson2</groupId>
+        <artifactId>fastjson2</artifactId>
+        <version>${fastjson2.version}</version>
+      </dependency>
+      <!--Druid-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-3-starter</artifactId>
+        <version>${druid-spring-boot-3-starter.version}</version>
+      </dependency>
+      <!--Jjwt-->
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
+      </dependency>
+      <!--EasyExcel-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>easyexcel</artifactId>
+        <version>${easyexcel.version}</version>
+      </dependency>
+      <!--Xxl-job-->
+      <dependency>
+        <groupId>com.xuxueli</groupId>
+        <artifactId>xxl-job-core</artifactId>
+        <version>${xxl-job-core.version}</version>
+      </dependency>
+      <!--Guava-->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.all.version}</version>
+      </dependency>
+      <!--      -->
+      <dependency>
+        <groupId>com.poetry</groupId>
+        <artifactId>poetry-api</artifactId>
+        <version>${poetry.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.poetry</groupId>
+        <artifactId>poetry-common</artifactId>
+        <version>${poetry.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.poetry</groupId>
+        <artifactId>poetry-model</artifactId>
+        <version>${poetry.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.poetry</groupId>
+        <artifactId>poetry-server</artifactId>
+        <version>${poetry.version}</version>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+  <build>
+    <!--项目插件管理-->
+    <pluginManagement>
+      <plugins>
+        <!--可执行jar插件-->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <configuration>
+            <excludes>
+              <exclude>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+              </exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <!--跳过测试插件-->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <skip>${maven.test.skip}</skip>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <!-- 项目全局编译插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+  <repositories>
+    <!--配置私服地址-->
+    <repository>
+      <id>central</id>
+      <url>https://maven.aliyun.com/repository/central</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+</project>

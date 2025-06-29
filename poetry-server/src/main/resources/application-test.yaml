@@ -1,0 +1,9 @@
+server:
+  port: 8082
+spring:
+  config:
+    import:
+      - classpath:test/druid.yaml
+      - classpath:test/mybatis.yaml
+      - classpath:test/pagehelper.yaml
+      - classpath:test/monitor.yaml

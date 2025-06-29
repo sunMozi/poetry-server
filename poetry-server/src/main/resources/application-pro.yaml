@@ -1,0 +1,9 @@
+server:
+  port: 8083
+spring:
+  config:
+    import:
+      - classpath:pro/druid.yaml
+      - classpath:pro/mybatis.yaml
+      - classpath:pro/pagehelper.yaml
+      - classpath:pro/monitor.yaml

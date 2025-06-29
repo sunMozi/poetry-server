@@ -1,0 +1,7 @@
+# 配置mybatis
+mybatis-plus:
+  type-aliases-package: com.poetry.model
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名 Java类中属性和 和表中字段自动映射，比如, userId <->user_id
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

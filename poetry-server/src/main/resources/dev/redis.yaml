@@ -1,0 +1,15 @@
+spring:
+  data:
+    redis:
+      host: 127.0.0.1  # Reids 服务器地址
+      port: 6379  # Redis 服务器端口
+      timeout: 10000 #读超时时间
+      connect-timeout: 60000 # 写超时时间
+      lettuce:
+        pool:
+          enabled: true # 开启连接池
+          max-idle: 8 # 最大空闲连接数
+          max-wait: 1ms
+          max-active: 8
+          min-idle: 0
+          time-between-eviction-runs: 600000
