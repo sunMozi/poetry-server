@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2025-06-29 11:49:33
  */
 @RestController
-@RequestMapping("/api/historyInfo")
+@RequestMapping("/historyInfo")
 public class HistoryInfoController {
 
   @Autowired

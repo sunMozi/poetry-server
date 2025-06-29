@@ -20,7 +20,7 @@ import java.util.List;
  * @since 2025-06-29 11:49:33
  */
 @RestController
-@RequestMapping("/api/treeHole")
+@RequestMapping("/treeHole")
 public class TreeHoleController {
 
     @Autowired

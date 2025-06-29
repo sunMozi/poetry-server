@@ -1,17 +1,9 @@
 package com.poetry.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import com.poetry.entity.WeiYan;
 import com.poetry.service.WeiYanService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 微言表
@@ -20,11 +12,11 @@ import java.util.List;
  * @since 2025-06-29 11:49:33
  */
 @RestController
-@RequestMapping("/api/weiYan")
+@RequestMapping("/weiYan")
 public class WeiYanController {
 
-    @Autowired
-    private WeiYanService weiYanService;
+  @Autowired
+  private WeiYanService weiYanService;
 
 
 }
