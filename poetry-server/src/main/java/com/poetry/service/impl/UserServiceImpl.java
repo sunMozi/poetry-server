@@ -11,7 +11,8 @@ import com.poetry.common.exception.Exceptions;
 import com.poetry.common.utils.RedisKeyUtil;
 import com.poetry.common.utils.RedisUtil;
 import com.poetry.common.utils.TokenUtil;
-import com.poetry.dto.UserLoginRequestDTO;
+import com.poetry.dto.UserLoginDTO;
+import com.poetry.dto.UserRegisterDTO;
 import com.poetry.entity.User;
 import com.poetry.mapper.UserMapper;
 import com.poetry.service.UserService;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * @author system
@@ -37,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
   private final TokenUtil tokenUtil;
 
   @Override
-  public UserVO login(UserLoginRequestDTO dto) {
+  public UserVO login(UserLoginDTO dto) {
     String encryptedPassword = DigestUtils.md5DigestAsHex(dto.getPassword().getBytes());
 
     User user = userMapper.selectOne(Wrappers.lambdaQuery(User.class)
@@ -90,6 +92,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                   CommonConst.USER_TOKEN_INTERVAL);
 
     return build;
+  }
+
+  @Override
+  public UserVO regist(UserRegisterDTO dto) {
+    if (StringUtils.hasText(dto.getPhoneNumber()) && StringUtils.hasText(dto.getEmail())) {
+      Exceptions.cast(400, "手机号与邮箱只能选择其中一个！");
+    }
+    if (!StringUtils.hasText(dto.getPhoneNumber()) && !StringUtils.hasText(dto.getEmail())) {
+      Exceptions.cast(400, "请输入邮箱或手机号");
+    }
+
+    return null;
   }
 
 

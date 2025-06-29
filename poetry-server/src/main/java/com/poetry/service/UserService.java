@@ -1,6 +1,7 @@
 package com.poetry.service;
 
-import com.poetry.dto.UserLoginRequestDTO;
+import com.poetry.dto.UserLoginDTO;
+import com.poetry.dto.UserRegisterDTO;
 import com.poetry.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.poetry.vo.UserVO;
@@ -11,5 +12,7 @@ import com.poetry.vo.UserVO;
  */
 public interface UserService extends IService<User> {
 
-  UserVO login(UserLoginRequestDTO dto);
+  UserVO login(UserLoginDTO dto);
+
+  UserVO regist(UserRegisterDTO dto);
 }

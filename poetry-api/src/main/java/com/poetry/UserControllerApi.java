@@ -1,9 +1,10 @@
 package com.poetry;
 
-import com.poetry.common.response.PageResult;
 import com.poetry.common.response.ResponseResult;
-import com.poetry.dto.UserLoginRequestDTO;
+import com.poetry.dto.UserLoginDTO;
+import com.poetry.dto.UserRegisterDTO;
 import com.poetry.vo.UserVO;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 public interface UserControllerApi {
 
   @PostMapping("login")
-  ResponseResult<UserVO> login(UserLoginRequestDTO dto);
+  ResponseResult<UserVO> login(@Valid UserLoginDTO dto);
+
+  @PostMapping("regist")
+  ResponseResult<UserVO> regist(@Valid UserRegisterDTO dto);
 
 }

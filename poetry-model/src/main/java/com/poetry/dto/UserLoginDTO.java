@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "用户登录请求参数")
-public class UserLoginRequestDTO implements Serializable {
+public class UserLoginDTO implements Serializable {
 
   @Serial
   private static final long serialVersionUID = 1L;

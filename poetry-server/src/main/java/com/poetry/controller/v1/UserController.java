@@ -2,7 +2,8 @@ package com.poetry.controller.v1;
 
 import com.poetry.UserControllerApi;
 import com.poetry.common.response.ResponseResult;
-import com.poetry.dto.UserLoginRequestDTO;
+import com.poetry.dto.UserLoginDTO;
+import com.poetry.dto.UserRegisterDTO;
 import com.poetry.service.UserService;
 import com.poetry.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,14 @@ public class UserController implements UserControllerApi {
 
 
   @Override
-  public ResponseResult<UserVO> login(UserLoginRequestDTO dto) {
+  public ResponseResult<UserVO> login(UserLoginDTO dto) {
     return ResponseResult.ok(userService.login(dto));
   }
+
+  @Override
+  public ResponseResult<UserVO> regist(UserRegisterDTO dto) {
+    return ResponseResult.ok(userService.regist(dto));
+  }
+
+
 }
