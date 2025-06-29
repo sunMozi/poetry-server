@@ -18,12 +18,7 @@
 
   </properties>
   <dependencies>
-    <!--引入API模块依赖-->
-    <dependency>
-      <groupId>com.mozisun.stock</groupId>
-      <artifactId>stock-api</artifactId>
-      <version>1.0.1</version>
-    </dependency>
+
     <!--yaml自定义配置依赖，开发阶段使用打包排除-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -69,6 +64,11 @@
       <groupId>com.poetry</groupId>
       <artifactId>poetry-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
 
 
   </dependencies>

@@ -1,4 +1,4 @@
-package com.poetry.server;
+package com.poetry;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
