@@ -1,4 +1,4 @@
-package com.poetry.controller;
+package com.poetry.controller.v1;
 
 import com.poetry.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
