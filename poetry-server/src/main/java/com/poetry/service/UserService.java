@@ -1,7 +1,9 @@
 package com.poetry.service;
 
+import com.poetry.dto.UserLoginRequestDTO;
 import com.poetry.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.poetry.vo.UserVO;
 
 /**
  * @author system
@@ -9,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+  UserVO login(UserLoginRequestDTO dto);
 }

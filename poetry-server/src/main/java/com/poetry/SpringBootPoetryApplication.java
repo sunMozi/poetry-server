@@ -6,8 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * @author moZiA
+ */
 @SpringBootApplication
-@MapperScan("com.poetry")
+@MapperScan("com.poetry.mapper")
 @EnableScheduling
 @EnableAsync
 public class SpringBootPoetryApplication {

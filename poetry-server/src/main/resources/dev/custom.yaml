@@ -1,0 +1,4 @@
+poetry:
+  jwt:
+    secret: poetry1234567890poetry1234567890 # 32位及以上安全密钥
+    expire-seconds: 3600 # 默认过期时间（单位：秒，例如 1 小时）

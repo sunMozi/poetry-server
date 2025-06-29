@@ -27,7 +27,7 @@
     <mybatis-plus-spring-boot3-starter>3.5.12</mybatis-plus-spring-boot3-starter>
     <pagehelper-spring-boot-starter.version>2.1.0</pagehelper-spring-boot-starter.version>
     <mysql-driver.version>8.3.0</mysql-driver.version>
-    <fastjson2.version>2.0.50</fastjson2.version>
+    <fastjson2.version>2.0.57</fastjson2.version>
     <druid-spring-boot-3-starter.version>1.2.25</druid-spring-boot-3-starter.version>
     <jjwt.version>0.12.5</jjwt.version>
     <easyexcel.version>4.0.3</easyexcel.version>

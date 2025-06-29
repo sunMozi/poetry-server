@@ -1,5 +1,6 @@
 package com.poetry.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,13 +17,14 @@ import lombok.Data;
 @TableName("user")
 public class User implements Serializable{
 
+    @Serial
     private static final long serialVersionUID=1L;
 
     /**
      *  ID
      */
     @NotBlank(message = "【ID】不能为空")
-    private Integer id;
+    private Long id;
 
     /**
      *  用户名

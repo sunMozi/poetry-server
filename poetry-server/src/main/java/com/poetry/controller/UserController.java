@@ -1,17 +1,13 @@
 package com.poetry.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import com.poetry.entity.User;
+import com.poetry.UserControllerApi;
+import com.poetry.common.response.ResponseResult;
+import com.poetry.dto.UserLoginRequestDTO;
 import com.poetry.service.UserService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import java.util.List;
+import com.poetry.vo.UserVO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户信息表
@@ -21,10 +17,15 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
-
-    @Autowired
-    private UserService userService;
+@RequiredArgsConstructor
+public class UserController implements UserControllerApi {
 
 
+  private final UserService userService;
+
+
+  @Override
+  public ResponseResult<UserVO> login(UserLoginRequestDTO dto) {
+    return ResponseResult.ok(userService.login(dto));
+  }
 }
