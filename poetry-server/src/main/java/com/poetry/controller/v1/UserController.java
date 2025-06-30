@@ -55,5 +55,11 @@ public class UserController implements UserControllerApi {
     return ResponseResult.ok(userService.token(userToken));
   }
 
+  @Override
+  public ResponseResult<?> logout() {
+    userService.logout();
+    return ResponseResult.ok();
+  }
+
 
 }

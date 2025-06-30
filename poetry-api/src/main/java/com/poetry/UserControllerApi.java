@@ -34,4 +34,9 @@ public interface UserControllerApi {
 
   @PostMapping("token")
   ResponseResult<UserVO> token(String userToken);
+
+
+  @PostMapping("logout")
+  ResponseResult<?> logout();
+
 }

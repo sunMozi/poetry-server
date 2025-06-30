@@ -143,7 +143,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
       log.warn("token 登录失败: token 中无 userId");
       Exceptions.cast(401, "token 信息不完整");
     }
-    
+
     User user = userMapper.selectById(userId);
     if (user == null) {
       log.warn("token 登录失败: 数据库中不存在该用户 userId={}", userId);
@@ -154,6 +154,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     UserVO userVO = buildUserVO(user, userToken);
     log.info("token 登录成功: userId={}", userId);
     return userVO;
+  }
+
+  @Override
+  public void logout() {
+    // TODO 登出 根据 线程变量来获取 userId 然后 删除 redis 中对应的 数据
   }
 
 
