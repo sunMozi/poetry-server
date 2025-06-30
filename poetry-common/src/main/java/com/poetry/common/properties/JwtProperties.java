@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * JWT 配置类，映射 application.yml 中的配置
+ * @author moZiA
  */
 @Data
 @Component

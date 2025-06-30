@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.poetry.common.constants.CommonConst;
+import com.poetry.common.context.BaseContext;
 import com.poetry.common.core.pojo.TokenPayload;
 import com.poetry.common.enums.DeletedEnum;
 import com.poetry.common.enums.UserStatusEnum;
@@ -158,7 +159,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
   @Override
   public void logout() {
-    // TODO 登出 根据 线程变量来获取 userId 然后 删除 redis 中对应的 数据
+    TokenPayload tokenPayload= BaseContext.get();
+    redisUtil.delete(RedisKeyUtil.userTokenKey(tokenPayload.getUserId()));
   }
 
 

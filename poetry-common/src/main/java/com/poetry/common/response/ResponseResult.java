@@ -3,7 +3,9 @@ package com.poetry.common.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.poetry.common.enums.CodeEnum;
 import com.poetry.common.exception.Code;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 通用接口响应对象
@@ -12,6 +14,8 @@ import lombok.Data;
  * @created 2024-06-21 14:24
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseResult<T> {
 
@@ -46,6 +50,22 @@ public class ResponseResult<T> {
   public static <T> ResponseResult<T> error(Code code) {
     return common(code, null);
   }
+
+  /**
+   * 接口响应失败，仅含自定义消息
+   *
+   * @param message 自定义错误信息
+   * @param <T> 数据类型
+   * @return ResponseResult
+   */
+  public static <T> ResponseResult<T> error(String message) {
+    ResponseResult<T> result = new ResponseResult<>();
+    result.code = CodeEnum.FAIL.getCode();
+    result.message = message;
+    result.currentTimeMillis = System.currentTimeMillis();
+    return result;
+  }
+
 
   /**
    * 接口响应成功（无数据）
