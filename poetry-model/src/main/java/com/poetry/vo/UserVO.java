@@ -2,8 +2,10 @@ package com.poetry.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户信息视图对象
@@ -14,6 +16,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserVO implements Serializable {
 
   @Schema(description = "访问令牌")
