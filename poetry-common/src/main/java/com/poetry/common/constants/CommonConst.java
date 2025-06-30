@@ -30,7 +30,7 @@ public class CommonConst {
    * 用法: FORGET_PASSWORD + 手机号/邮箱 + "_1"/"_2"
    * _1 代表手机，_2 代表邮箱
    */
-  public static final String FORGET_PASSWORD = "poetry:verifyCode:";
+  public static final String FORGET_PASSWORD = "poetry:verifyCode";
 
   /**
    * 用户默认头像地址

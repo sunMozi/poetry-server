@@ -1,6 +1,7 @@
 package com.poetry.common.utils;
 
 import com.poetry.common.constants.CommonConst;
+import com.poetry.dto.UserRegisterDTO;
 import org.springframework.util.StringUtils;
 
 
@@ -27,7 +28,7 @@ public class RedisKeyUtil {
   /**
    * 构建验证码缓存 key，根据手机号或邮箱自动生成
    */
-  public static String verifyCodeKey(com.poetry.dto.UserRegisterDTO dto) {
+  public static String verifyCodeKey(UserRegisterDTO dto) {
     if (StringUtils.hasText(dto.getPhoneNumber())) {
       return verifyCodeKey(dto.getPhoneNumber(), "1");
     } else if (StringUtils.hasText(dto.getEmail())) {

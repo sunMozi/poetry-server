@@ -1,8 +1,11 @@
 package com.poetry.controller.v1;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.poetry.WebInfoControllerApi;
+import com.poetry.common.response.ResponseResult;
 import com.poetry.service.WebInfoService;
+import com.poetry.vo.WebInfoVO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 网站信息表
@@ -10,12 +13,17 @@ import com.poetry.service.WebInfoService;
  * @author system
  * @since 2025-06-29 11:49:33
  */
+
+
 @RestController
-@RequestMapping("/webInfo")
-public class WebInfoController {
+@RequiredArgsConstructor
+public class WebInfoController implements WebInfoControllerApi {
 
-    @Autowired
-    private WebInfoService webInfoService;
+  private final WebInfoService webInfoService;
 
 
+  @Override
+  public ResponseResult<WebInfoVO> getWebInfo() {
+    return ResponseResult.ok(webInfoService.getWebInfo());
+  }
 }

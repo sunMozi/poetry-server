@@ -6,6 +6,7 @@ import lombok.Getter;
 /**
  * 项目自定义异常
  * 支持 Code 对象、自定义 code+msg、自定义 cause
+ * @author moZiA
  */
 @Getter
 public class StockException extends RuntimeException implements Code {

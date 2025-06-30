@@ -2,6 +2,8 @@
   <dictionary name="project">
     <words>
       <w>regist</w>
+      <w>smtps</w>
+      <w>stmp</w>
     </words>
   </dictionary>
 </component>

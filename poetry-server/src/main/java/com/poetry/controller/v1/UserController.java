@@ -5,6 +5,7 @@ import com.poetry.common.response.ResponseResult;
 import com.poetry.dto.UserLoginDTO;
 import com.poetry.dto.UserRegisterDTO;
 import com.poetry.service.UserService;
+import com.poetry.service.VerifyCodeService;
 import com.poetry.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class UserController implements UserControllerApi {
 
 
   private final UserService userService;
+  private final VerifyCodeService verifyCodeService;
 
 
   @Override
@@ -33,6 +35,18 @@ public class UserController implements UserControllerApi {
   @Override
   public ResponseResult<UserVO> regist(UserRegisterDTO dto) {
     return ResponseResult.ok(userService.regist(dto));
+  }
+
+  @Override
+  public ResponseResult<?> getCode(Integer type) {
+    verifyCodeService.sendVerifyCode(type, null);
+    return ResponseResult.ok();
+  }
+
+  @Override
+  public ResponseResult<?> getCodeForForgetPassword(String place, Integer type) {
+    verifyCodeService.sendVerifyCode(type, place);
+    return ResponseResult.ok();
   }
 
 

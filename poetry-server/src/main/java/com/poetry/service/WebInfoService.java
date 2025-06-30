@@ -2,6 +2,7 @@ package com.poetry.service;
 
 import com.poetry.entity.WebInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.poetry.vo.WebInfoVO;
 
 /**
  * @author system
@@ -9,4 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface WebInfoService extends IService<WebInfo> {
 
+  WebInfoVO getWebInfo();
 }

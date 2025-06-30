@@ -1,0 +1,21 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    protocol: smtp
+    default-encoding: UTF-8
+    username: 2138844072@qq.com
+    password: vdjwjwcbsdpufcae
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          timeout: 5000
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false  # 开发时关闭缓存，方便调试

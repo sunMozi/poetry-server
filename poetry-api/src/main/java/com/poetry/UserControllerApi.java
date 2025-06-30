@@ -5,8 +5,10 @@ import com.poetry.dto.UserLoginDTO;
 import com.poetry.dto.UserRegisterDTO;
 import com.poetry.vo.UserVO;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,4 +25,10 @@ public interface UserControllerApi {
   @PostMapping("regist")
   ResponseResult<UserVO> regist(@Valid UserRegisterDTO dto);
 
+  @GetMapping("getCode")
+  ResponseResult<?> getCode(Integer type);
+
+  @GetMapping("/getCodeForForgetPassword")
+  ResponseResult<?> getCodeForForgetPassword(@RequestParam("place") String place,
+                                             @RequestParam("flag") Integer type);
 }

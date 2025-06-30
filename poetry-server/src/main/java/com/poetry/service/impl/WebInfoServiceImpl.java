@@ -1,16 +1,14 @@
 package com.poetry.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.poetry.mapper.WebInfoMapper;
 import com.poetry.entity.WebInfo;
+import com.poetry.mapper.WebInfoMapper;
 import com.poetry.service.WebInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.poetry.vo.WebInfoVO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * @author system
@@ -18,9 +16,24 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class WebInfoServiceImpl extends ServiceImpl<WebInfoMapper, WebInfo> implements WebInfoService {
+@RequiredArgsConstructor
+public class WebInfoServiceImpl extends ServiceImpl<WebInfoMapper, WebInfo> implements
+    WebInfoService {
 
-    @Autowired
-    private WebInfoMapper webInfoMapper;
+  private final WebInfoMapper webInfoMapper;
 
+  @Override
+  public WebInfoVO getWebInfo() {
+    WebInfo webInfo = webInfoMapper.selectById(1);
+    WebInfoVO webInfoVO = new WebInfoVO();
+    BeanUtil.copyProperties(webInfo, webInfoVO);
+
+    // TODO: 从缓存或统计服务中获取历史总访问数并赋值
+
+    // TODO: 从缓存或统计服务中获取历史日访问数并赋值
+
+    // TODO: 如需根据配置动态生成默认存储类型，此处应补充逻辑
+
+    return webInfoVO;
+  }
 }
