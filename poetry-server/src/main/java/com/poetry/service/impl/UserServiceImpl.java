@@ -18,6 +18,7 @@ import com.poetry.entity.User;
 import com.poetry.mapper.UserMapper;
 import com.poetry.service.UserService;
 import com.poetry.vo.UserVO;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -123,6 +124,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     // 构建返回对象
     return userVO;
   }
+
+  @Override
+  public UserVO token(String userToken) {
+    if (userToken == null || userToken.isBlank()) {
+      log.warn("token 登录失败: token 为空");
+      Exceptions.cast(401, "token 无效或已过期");
+    }
+
+    Claims claims = tokenUtil.parseTokenSafe(userToken);
+    if (claims == null) {
+      log.warn("token 登录失败: 无法解析 token");
+      Exceptions.cast(401, "token 无效或已过期");
+    }
+
+    Long userId = claims.get("userId", Long.class);
+    if (userId == null) {
+      log.warn("token 登录失败: token 中无 userId");
+      Exceptions.cast(401, "token 信息不完整");
+    }
+    
+    User user = userMapper.selectById(userId);
+    if (user == null) {
+      log.warn("token 登录失败: 数据库中不存在该用户 userId={}", userId);
+      Exceptions.cast(401, "不存在该用户");
+    }
+
+    // 脱敏封装返回
+    UserVO userVO = buildUserVO(user, userToken);
+    log.info("token 登录成功: userId={}", userId);
+    return userVO;
+  }
+
 
   /**
    * 校验基本参数

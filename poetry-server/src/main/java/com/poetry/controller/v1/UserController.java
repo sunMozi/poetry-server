@@ -9,6 +9,7 @@ import com.poetry.service.VerifyCodeService;
 import com.poetry.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -47,6 +48,11 @@ public class UserController implements UserControllerApi {
   public ResponseResult<?> getCodeForForgetPassword(String place, Integer type) {
     verifyCodeService.sendVerifyCode(type, place);
     return ResponseResult.ok();
+  }
+
+  @Override
+  public ResponseResult<UserVO> token(@RequestParam("userToken") String userToken) {
+    return ResponseResult.ok(userService.token(userToken));
   }
 
 

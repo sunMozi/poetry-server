@@ -31,4 +31,7 @@ public interface UserControllerApi {
   @GetMapping("/getCodeForForgetPassword")
   ResponseResult<?> getCodeForForgetPassword(@RequestParam("place") String place,
                                              @RequestParam("flag") Integer type);
+
+  @PostMapping("token")
+  ResponseResult<UserVO> token(String userToken);
 }
