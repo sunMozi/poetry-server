@@ -1,7 +1,7 @@
 package com.poetry.service.impl.handler;
 
 
-import com.poetry.common.enums.VerifyCodeType;
+import com.poetry.enums.VerifyCodeType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.poetry.service.impl.handler;
 
-import com.poetry.common.enums.VerifyCodeType;
+import com.poetry.enums.VerifyCodeType;
 import com.poetry.common.utils.MailUtil;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;

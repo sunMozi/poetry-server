@@ -1,7 +1,7 @@
 package com.poetry.service.impl;
 
 
-import com.poetry.common.enums.VerifyCodeType;
+import com.poetry.enums.VerifyCodeType;
 import com.poetry.common.utils.RedisKeyUtil;
 import com.poetry.common.utils.RedisUtil;
 import com.poetry.common.utils.VerifyCodeUtil;

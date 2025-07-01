@@ -112,4 +112,6 @@ public class ResponseResult<T> {
     this.data = data;
     this.currentTimeMillis = System.currentTimeMillis();
   }
+
+
 }

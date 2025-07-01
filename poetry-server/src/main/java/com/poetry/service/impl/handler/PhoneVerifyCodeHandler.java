@@ -1,6 +1,6 @@
 package com.poetry.service.impl.handler;
 
-import com.poetry.common.enums.VerifyCodeType;
+import com.poetry.enums.VerifyCodeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
