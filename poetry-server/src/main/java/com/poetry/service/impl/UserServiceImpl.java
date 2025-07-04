@@ -87,7 +87,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                          .avatar(user.getAvatar())
                          .gender(user.getGender())
                          .introduction(user.getIntroduction())
-                         .subscribe(user.getSubscribe())
                          .accessToken(token)
                          .build();
 

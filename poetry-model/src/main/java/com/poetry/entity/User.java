@@ -1,125 +1,112 @@
 package com.poetry.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableName;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
  * 用户信息表
  *
- * @author system
- * @since 2025-06-29 11:44:05
+ * @author Zyan
+ * @since 2025-07-02 11:47:22
  */
 @Data
 @TableName("user")
-public class User implements Serializable{
+public class User implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID=1L;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
-    /**
-     *  ID
-     */
-    @NotBlank(message = "【ID】不能为空")
-    private Long id;
+  /**
+   *  主键ID
+   */
+  private Long id;
 
-    /**
-     *  用户名
-     */
-    @NotBlank(message = "【用户名】不能为空")
-    private String username;
+  /**
+   *  用户名（唯一，用于登录）
+   */
+  private String username;
 
-    /**
-     *  密码
-     */
-    @NotBlank(message = "【密码】不能为空")
-    private String password;
+  /**
+   *  用户昵称（展示名称，可重复）
+   */
+  private String nickname;
 
-    /**
-     *  手机号
-     */
-    @NotBlank(message = "【手机号】不能为空")
-    private String phoneNumber;
+  /**
+   *  密码（加密存储）
+   */
+  private String password;
 
-    /**
-     *  用户邮箱
-     */
-    @NotBlank(message = "【用户邮箱】不能为空")
-    private String email;
+  /**
+   *  手机号
+   */
+  private String phoneNumber;
 
-    /**
-     *  是否启用[0:否，1:是]
-     */
-    @NotBlank(message = "【是否启用[0:否，1:是]】不能为空")
-    private Integer userStatus;
+  /**
+   *  邮箱
+   */
+  private String email;
 
-    /**
-     *  性别[1:男，2:女，0:保密]
-     */
-    @NotBlank(message = "【性别[1:男，2:女，0:保密]】不能为空")
-    private Integer gender;
+  /**
+   *  用户状态[0:禁用,1:启用]
+   */
+  private Integer userStatus;
 
-    /**
-     *  OPENID
-     */
-    @NotBlank(message = "【OPENID】不能为空")
-    private String openId;
+  /**
+   *  性别[0:保密,1:男,2:女]
+   */
+  private Integer gender;
 
-    /**
-     *  头像
-     */
-    @NotBlank(message = "【头像】不能为空")
-    private String avatar;
+  /**
+   *  第三方OPENID
+   */
+  private String openId;
 
-    /**
-     *  赞赏
-     */
-    @NotBlank(message = "【赞赏】不能为空")
-    private String admire;
+  /**
+   *  头像URL
+   */
+  private String avatar;
 
-    /**
-     *  订阅
-     */
-    @NotBlank(message = "【订阅】不能为空")
-    private String subscribe;
+  /**
+   *  赞赏累计金额
+   */
+  private Float admireAmount;
 
-    /**
-     *  简介
-     */
-    @NotBlank(message = "【简介】不能为空")
-    private String introduction;
+  /**
+   *  简介
+   */
+  private String introduction;
 
-    /**
-     *  用户类型[0:ADMIN，1:管理员，2:普通用户]
-     */
-    @NotBlank(message = "【用户类型[0:ADMIN，1:管理员，2:普通用户]】不能为空")
-    private Integer userType;
+  /**
+   *  用户类型[0:超级管理员,1:管理员,2:普通用户]
+   */
+  private Integer userType;
 
-    /**
-     *  创建时间
-     */
-    @NotBlank(message = "【创建时间】不能为空")
-    private Date createTime;
+  /**
+   *  创建时间
+   */
+  private Date createTime;
 
-    /**
-     *  最终修改时间
-     */
-    @NotBlank(message = "【最终修改时间】不能为空")
-    private Date updateTime;
+  /**
+   *  创建人
+   */
+  private String createBy;
 
-    /**
-     *  最终修改人
-     */
-    @NotBlank(message = "【最终修改人】不能为空")
-    private String updateBy;
+  /**
+   *  更新时间
+   */
+  private Date updateTime;
 
-    /**
-     *  是否启用[0:未删除，1:已删除]
-     */
-    @NotBlank(message = "【是否启用[0:未删除，1:已删除]】不能为空")
-    private Integer deleted;
+  /**
+   *  最后修改人
+   */
+  private String updateBy;
+
+  /**
+   *  是否已删除[0:未删除,1:已删除]
+   */
+  private Integer deleted;
 
 }

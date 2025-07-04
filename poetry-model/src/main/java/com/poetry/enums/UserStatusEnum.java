@@ -6,6 +6,7 @@ import lombok.Getter;
 /**
  * 用户状态枚举
  * 是否启用：0=否，1=是
+ * @author moZiA
  */
 @Getter
 @AllArgsConstructor
