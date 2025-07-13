@@ -1,6 +1,7 @@
 package com.poetry.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.poetry.common.exception.Exceptions;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Zyan
@@ -72,37 +74,42 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
   @Override
   public PageResult<ArticleListVO> getList(ArticleQueryDTO queryDTO) {
-    // 1. 构建分页参数
     Page<Article> page = new Page<>(queryDTO.getPage(), queryDTO.getSize());
 
-    // 2. 构建查询条件
-    LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<>();
-    wrapper.eq(Article::getStatus, 1);
-    wrapper.eq(Article::getAuthorId, queryDTO.getAuthorId() != null ? queryDTO.getAuthorId() : 1L);
+    QueryWrapper<Article> wrapper = new QueryWrapper<>();
+    wrapper.eq("status", 1);
+
+    if (queryDTO.getAuthorId() != null) {
+      wrapper.eq("author_id", queryDTO.getAuthorId());
+    }
 
     if (queryDTO.getCategoryId() != null) {
-      wrapper.eq(Article::getCategoryId, queryDTO.getCategoryId());
-    }
-    if (queryDTO.getAuthorId() != null) {
-      wrapper.eq(Article::getAuthorId, queryDTO.getAuthorId());
-    }
-    if (queryDTO.getKeyword() != null && !queryDTO.getKeyword().isEmpty()) {
-      wrapper.and(w -> w.like(Article::getTitle, queryDTO.getKeyword())
-                        .or()
-                        .like(Article::getSummary, queryDTO.getKeyword()));
+      wrapper.eq("category_id", queryDTO.getCategoryId());
     }
 
-    wrapper.select(Article::getId,
-                   Article::getCategoryId,
-                   Article::getAuthorId,
-                   Article::getTitle,
-                   Article::getSlug,
-                   Article::getSummary,
-                   Article::getCoverImage,
-                   Article::getViews,
-                   Article::getLikes,
-                   Article::getCommentsCount,
-                   Article::getCreateTime);
+    if (StringUtils.hasText(queryDTO.getKeyword())) {
+      wrapper.and(w -> w.like("title", queryDTO.getKeyword())
+                        .or()
+                        .like("summary", queryDTO.getKeyword()));
+    }
+
+    // 排序字段控制：必须是白名单字段
+    String sortField = switch (queryDTO.getSort()) {
+      case "views" -> "views";
+      case "likes" -> "likes";
+      case "createTime" -> "create_time";
+      default -> "create_time";
+    };
+
+    boolean isAsc = "asc".equalsIgnoreCase(queryDTO.getOrder());
+    if (isAsc) {
+      wrapper.orderByAsc(sortField);
+    } else {
+      wrapper.orderByDesc(sortField);
+    }
+
+    wrapper.select("id", "category_id", "author_id", "title", "slug", "summary",
+                   "cover_image", "views", "likes", "comments_count", "create_time");
 
     Page<Article> articlePage = articleMapper.selectPage(page, wrapper);
 
@@ -118,16 +125,16 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
       vo.setCommentsCount(article.getCommentsCount());
       vo.setCreateTime(article.getCreateTime());
       vo.setAuthorId(article.getAuthorId());
-
-      vo.setAuthorName("作者名称-待填充");
-      vo.setAuthorAvatar("作者头像URL-待填充");
+      vo.setAuthorName("Zyan");
+      vo.setAuthorAvatar("https://foruda.gitee.com/avatar/1749603480089134020/12783544_yzy_201_1749603480.png");
       vo.setAuthorSourceType(0);
-
       return vo;
     }).toList();
 
     return PageResult.of(articlePage.getTotal(), queryDTO.getPage(), queryDTO.getSize(), voList);
   }
+
+
 
 
 }

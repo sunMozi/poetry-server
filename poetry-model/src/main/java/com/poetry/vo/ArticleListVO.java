@@ -19,7 +19,7 @@ public class ArticleListVO implements Serializable {
   @Schema(description = "文章标题")
   private String title;
 
-  @Schema(description = "URL 别名（SEO友好）")
+  @Schema(description = "URL 别名")
   private String slug;
 
   @Schema(description = "文章摘要")

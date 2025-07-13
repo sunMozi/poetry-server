@@ -13,6 +13,7 @@
     <module>poetry-api</module>
     <module>poetry-model</module>
     <module>poetry-server</module>
+    <module>poetry-oss</module>
   </modules>
 
   <properties>

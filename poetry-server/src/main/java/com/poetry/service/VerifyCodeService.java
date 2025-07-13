@@ -6,5 +6,5 @@ package com.poetry.service;
  */
 public interface VerifyCodeService {
 
-  void sendVerifyCode(Integer type ,String place);
+    void sendVerifyCode(String email);
 }
