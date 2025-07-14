@@ -11,3 +11,4 @@ spring:
       - classpath:dev/custom.yaml
       - classpath:dev/knife4j.yaml
       - classpath:dev/email.yaml
+      - classpath:dev/oss.yaml

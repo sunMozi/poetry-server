@@ -2,6 +2,7 @@ package com.poetry.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.poetry.common.response.PageResult;
+import com.poetry.dto.ArticleCreateDTO;
 import com.poetry.dto.ArticleQueryDTO;
 import com.poetry.entity.Article;
 import com.poetry.vo.ArticleDetailVO;
@@ -16,4 +17,6 @@ public interface ArticleService extends IService<Article> {
   PageResult<ArticleListVO> getList(ArticleQueryDTO queryDTO);
 
   ArticleDetailVO getDetailBySlug(String slug);
+
+  Void create(ArticleCreateDTO createDTO);
 }

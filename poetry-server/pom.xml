@@ -80,6 +80,11 @@
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.poetry</groupId>
+      <artifactId>poetry-oss</artifactId>
+    </dependency>
+
 
 
 

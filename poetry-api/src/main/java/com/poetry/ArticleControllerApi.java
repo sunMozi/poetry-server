@@ -3,11 +3,14 @@ package com.poetry;
 
 import com.poetry.common.response.PageResult;
 import com.poetry.common.response.ResponseResult;
+import com.poetry.dto.ArticleCreateDTO;
 import com.poetry.dto.ArticleQueryDTO;
 import com.poetry.vo.ArticleDetailVO;
 import com.poetry.vo.ArticleListVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +28,8 @@ public interface ArticleControllerApi {
 
   @GetMapping("/detail/{slug}")
   ResponseResult<ArticleDetailVO> getDetailBySlug(@PathVariable("slug") String slug);
+
+  @PostMapping("/create")
+  ResponseResult<Void> create(@RequestBody ArticleCreateDTO createDTO);
 
 }

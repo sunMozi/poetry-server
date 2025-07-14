@@ -1,0 +1,25 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB       # 单个文件最大大小
+      max-request-size: 50MB    # 一次请求总上传大小
+
+oss:
+
+  strategy: aliyun # 可选：local、aliyun、minio
+
+  local:
+    base-path: /data/files
+    access-url: http://localhost:8081/files
+
+  aliyun:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    access-key: ${ALIBABA_ACCESS_KEY_ID}
+    secret-key: ${ALIBABA_ACCESS_KEY_SECRET}
+    bucket: mozi1
+
+  minio:
+    endpoint: http://localhost:9000
+    access-key: minioadmin
+    secret-key: minioadmin
+    bucket: poetry-bucket

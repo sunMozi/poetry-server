@@ -4,6 +4,7 @@ package com.poetry.controller.v1;
 import com.poetry.ArticleControllerApi;
 import com.poetry.common.response.PageResult;
 import com.poetry.common.response.ResponseResult;
+import com.poetry.dto.ArticleCreateDTO;
 import com.poetry.dto.ArticleQueryDTO;
 import com.poetry.service.ArticleService;
 import com.poetry.vo.ArticleDetailVO;
@@ -31,5 +32,10 @@ public class ArticleController implements ArticleControllerApi {
   @Override
   public ResponseResult<ArticleDetailVO> getDetailBySlug(String slug) {
     return ResponseResult.ok(articleService.getDetailBySlug(slug));
+  }
+
+  @Override
+  public ResponseResult<Void> create(ArticleCreateDTO createDTO) {
+    return ResponseResult.ok(articleService.create(createDTO));
   }
 }

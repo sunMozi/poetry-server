@@ -6,6 +6,9 @@ import com.poetry.entity.ArticleCategory;
 import com.poetry.mapper.ArticleCategoryMapper;
 import com.poetry.service.ArticleCategoryService;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -40,4 +43,23 @@ public class ArticleCategoryServiceImpl extends
                                                                                          ArticleCategory::getId)
                                                                                      .last("LIMIT 5"));
   }
+
+  @Override
+  public Map<Long, String> getCategoryNameMap(Set<Long> categoryIds) {
+    if (categoryIds == null || categoryIds.isEmpty()) {
+      return Map.of();
+    }
+
+    LambdaQueryWrapper<ArticleCategory> wrapper = new LambdaQueryWrapper<>();
+    wrapper.in(ArticleCategory::getId, categoryIds);
+
+    List<ArticleCategory> categoryList = articleCategoryMapper.selectList(wrapper);
+
+    return categoryList.stream()
+                       .collect(Collectors.toMap(
+                           ArticleCategory::getId,
+                           ArticleCategory::getSortName
+                       ));
+  }
+
 }
