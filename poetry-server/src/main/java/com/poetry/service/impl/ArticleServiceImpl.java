@@ -9,6 +9,7 @@ import com.poetry.common.response.PageResult;
 import com.poetry.common.utils.SlugUtils;
 import com.poetry.dto.ArticleCreateDTO;
 import com.poetry.dto.ArticleQueryDTO;
+import com.poetry.dto.ArticleUpdateDTO;
 import com.poetry.entity.Article;
 import com.poetry.entity.Author;
 import com.poetry.mapper.ArticleMapper;
@@ -106,6 +107,42 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     articleMapper.insert(article);
 
     return null;
+  }
+
+  @Override
+  public void put(ArticleUpdateDTO dto) {
+
+  }
+
+  @Override
+  public ArticleDetailVO getDetailById(Long id) {
+    Article article = articleMapper.selectById(id);
+
+    if (article == null) {
+      log.warn("文章未找到，id={}", id);
+      Exceptions.cast(404, "文章未找到");
+    }
+
+    Author author = authorMapper.selectById(article.getAuthorId());
+
+    // 3. 构造返回 VO
+    ArticleDetailVO vo = new ArticleDetailVO();
+    BeanUtils.copyProperties(article, vo);
+
+    if (author != null) {
+      vo.setAuthorNickname(author.getNickname());
+      vo.setAuthorRealName(author.getRealName());
+      vo.setAuthorAvatar(author.getAvatar());
+      vo.setAuthorBio(author.getBio());
+      vo.setAuthorEmail(author.getEmail());
+      vo.setAuthorWebsite(author.getWebsite());
+      vo.setAuthorStatus(author.getStatus());
+      vo.setAuthorCreateTime(author.getCreateTime());
+      vo.setAuthorUpdateTime(author.getUpdateTime());
+    } else {
+      log.warn("作者信息未找到，authorId={}", article.getAuthorId());
+    }
+    return vo;
   }
 
   @Override

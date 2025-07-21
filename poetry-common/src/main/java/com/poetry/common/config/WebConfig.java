@@ -1,7 +1,8 @@
 package com.poetry.common.config;
 
 import com.poetry.common.interceptor.JwtTokenAdminInterceptor;
-import jakarta.annotation.Resource;
+import com.poetry.common.interceptor.RepeatSubmitInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -10,10 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author moZiA
  */
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-  @Resource
-  private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
+  private final JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
+  private final RepeatSubmitInterceptor repeatSubmitInterceptor;
+
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
@@ -26,5 +29,10 @@ public class WebConfig implements WebMvcConfigurer {
                                  "/doc.html/**",
                                  "/swagger-ui/**",
                                  "/v3/api-docs/**");
+
+    registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
+
   }
+
+
 }

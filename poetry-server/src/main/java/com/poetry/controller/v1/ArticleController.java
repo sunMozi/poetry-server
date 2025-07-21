@@ -6,6 +6,7 @@ import com.poetry.common.response.PageResult;
 import com.poetry.common.response.ResponseResult;
 import com.poetry.dto.ArticleCreateDTO;
 import com.poetry.dto.ArticleQueryDTO;
+import com.poetry.dto.ArticleUpdateDTO;
 import com.poetry.service.ArticleService;
 import com.poetry.vo.ArticleDetailVO;
 import com.poetry.vo.ArticleListVO;
@@ -37,5 +38,16 @@ public class ArticleController implements ArticleControllerApi {
   @Override
   public ResponseResult<Void> create(ArticleCreateDTO createDTO) {
     return ResponseResult.ok(articleService.create(createDTO));
+  }
+
+  @Override
+  public ResponseResult<Void> put(ArticleUpdateDTO dto) {
+    articleService.put(dto);
+    return ResponseResult.ok();
+  }
+
+  @Override
+  public ResponseResult<ArticleDetailVO> getDetailById(Long id) {
+    return ResponseResult.ok(articleService.getDetailById(id));
   }
 }
